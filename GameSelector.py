@@ -72,13 +72,12 @@ def hangman():
     remaining_characters = len(word_choice)
     turns_remaining = 10
 
-    #create and display the blanks for the word
-    word_length = len(word_choice)
-    array_index = 0
-
     #variable to hold already guessed letters
     already_guessed = ""
 
+    #create and display the blanks for the word
+    word_length = len(word_choice)
+    array_index = 0
     while True:
         display_word_array[array_index] = "_ "
         word_length = word_length - 1
@@ -86,6 +85,7 @@ def hangman():
         if word_length == 0:
             break
     
+    #function for information to display including turns remaining, characters guessed and the missing blanks
     def display_module():
             print("\nYou have ", turns_remaining, " guesses remaining.")
             print("\nAleady guessed letters: ", already_guessed)
@@ -93,32 +93,37 @@ def hangman():
                 print(char, end ="")
 
     display_module()
-    #for char in display_word_array:
-            #print(char, end ="")
 
+    #taking in user input and comparing to the selected word
     while True:
         user_guess = input("\nWhat's your guess?: ").lower()
         turns_remaining = turns_remaining - 1
         letter_found = False
-        for x in word_choice:
-            if x == user_guess:
+        for char in word_choice:
+            if char == user_guess:
                 index = word_choice.index(user_guess)
                 remaining_characters = remaining_characters - 1
                 display_word_array[index] = user_guess
                 letter_found = True
-        
+
+        #if the letter isn't found in the selected word, tell the user and add the letter to the already_guessed string
         if letter_found == False:
             already_guessed += user_guess
             print("\nSorry, pick again")
 
+        #if the remaining character reaches zero, the user wins!
         if remaining_characters == 0:
             print("\nYou win!\n")
-            break
-
-        elif turns_remaining == 0:
-            print("\nBetter luck next time!\n")
+            one_more_time()
             break
         
+        #if turns remaining reaches zero, the user loses
+        elif turns_remaining == 0:
+            print("\nBetter luck next time!\n")
+            one_more_time()
+            break
+            
+        #displaying the mode
         display_module()
         
 
@@ -142,7 +147,9 @@ def one_more_time():
     play_again = input("\nWould you like to play another game? ").lower()
     if play_again == "yes" or play_again == "y":
         print("\nLet's do it!")
-        want_to_play()
+        print("\nWhich one would you like to play?\n1) Rock Paper Scissors\n2) Hangman")
+        game_choice = input("\nEnter the number for the game you'd like to play: ")
+        game_selector(game_choice)
     elif play_again == "no" or play_again =="n":
         print("\nI didn't want to play anyway. Bye!")
     else:

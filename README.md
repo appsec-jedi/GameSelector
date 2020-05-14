@@ -1,1 +1,3 @@
-#A simple game selector app using Python
+# A simple game selector app
+
+## Technology used: Python

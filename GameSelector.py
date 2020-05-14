@@ -1,5 +1,5 @@
 """
-Simple Python rock paper scissors project
+Simple game selector project
 """
 
 import random

@@ -52,20 +52,17 @@ def rock_paper_scissors():
 def hangman():   
     
     #randomly select one of four words
-    #word_chooser = random.randint(1,4)
-    #if word_chooser == 1:
-    #    word_choice = "auburn"
-    #elif word_chooser == 2:
-    #    word_choice = "cloud"
-    #elif word_chooser == 3:
-    #    word_choice = "security"
-    #elif word_chooser == 4:
-    #    word_choice = "pineapple"
-
-    word_choice = "pineapple"
+    word_chooser = random.randint(1,4)
+    if word_chooser == 1:
+        word_choice = "auburn"
+    elif word_chooser == 2:
+        word_choice = "cloud"
+    elif word_chooser == 3:
+        word_choice = "security"
+    elif word_chooser == 4:
+        word_choice = "pineapple"
 
     #moving the chosen word into an array and creating an empty array to display missing and chosen characters
-    #word_array = word_choice.split(',')
     display_word_array = [None] * len(word_choice)
 
     #setting values for characters remaining to be guessed and turns remaining 

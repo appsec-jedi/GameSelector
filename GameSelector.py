@@ -99,9 +99,11 @@ def hangman():
         user_guess = input("\nWhat's your guess?: ").lower()
         turns_remaining = turns_remaining - 1
         letter_found = False
+        index = -1
         for char in word_choice:
+            index = index + 1
             if char == user_guess:
-                index = word_choice.index(user_guess)
+                #index = word_choice.index(user_guess)
                 display_word_array[index] = user_guess
                 remaining_characters = remaining_characters - 1
                 letter_found = True
@@ -113,6 +115,7 @@ def hangman():
 
         #if the remaining character reaches zero, the user wins!
         if remaining_characters == 0:
+            print("\nCorrect! The word was ", word_choice)
             print("\nYou win!\n")
             one_more_time()
             break
@@ -130,14 +133,14 @@ def hangman():
 def want_to_play():
     #take in user input
     print("\nHey friend, do you want to play a game? ")
-    play = input("Enter Yes or No ")
+    play = input("Enter Yes or No ").lower()
 
     #get user selection for the game
-    if play.lower() == "yes" or play.lower() == "y":
+    if play == "yes" or play == "y":
         print("\nWhich one would you like to play?\n1) Rock Paper Scissors\n2) Hangman")
         game_choice = input("\nEnter the number for the game you'd like to play: ")
         game_selector(game_choice)
-    elif play.lower() == "no" or play.lower == "n":
+    elif play == "no" or play == "n":
         print("I'm sorry you don't want to play\nCome back soon!")
     else:
         print("Sorry, I didn't catch that")
@@ -155,5 +158,6 @@ def one_more_time():
     else:
         print("Sorry, I didn't catch that")
 
+#start the program
 want_to_play()
 

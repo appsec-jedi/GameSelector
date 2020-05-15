@@ -102,8 +102,8 @@ def hangman():
         for char in word_choice:
             if char == user_guess:
                 index = word_choice.index(user_guess)
-                remaining_characters = remaining_characters - 1
                 display_word_array[index] = user_guess
+                remaining_characters = remaining_characters - 1
                 letter_found = True
 
         #if the letter isn't found in the selected word, tell the user and add the letter to the already_guessed string

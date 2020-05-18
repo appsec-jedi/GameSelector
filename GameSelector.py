@@ -155,6 +155,21 @@ def one_more_time():
     else:
         print("Sorry, I didn't catch that")
 
-#start the program
-want_to_play()
+
+def banner():
+    message = "Welcome to the GameSelector 9000"
+    border = "*" * len(message)
+    print(border)
+    print(message)
+    print(border)
+
+    #start the program
+    want_to_play()
+
+
+#Display the banner then start the game
+banner()
+
+
+
 

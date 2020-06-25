@@ -19,34 +19,38 @@ def game_selector(choice):
 #rock paper scissors game
 def rock_paper_scissors():
     #take in user choice 
-    user_choice = input("\nMake your selection: ") 
+    user_choice = input("\nMake your selection: ")
     
-    #randomly select a number between 1 and 3 for the computer choice and determine game outcome
-    computer_choice = random.randint(1,3)
-    if user_choice.lower() == "rock":
-        if computer_choice == 1:
-            print("Computer chose rock. It's a tie!")
-        elif computer_choice == 2:
-            print("Computer chose paper. You lose!")
-        elif computer_choice == 3:
-            print("Computer chose scissors. You win!")
-    elif user_choice.lower() == "paper":
-        if computer_choice == 1:
-            print("Computer chose rock. You win!")
-        elif computer_choice == 2:
-            print("Computer chose paper. It's a tie!")
-        elif computer_choice == 3:
-            print("Computer chose scissors. You lose!")
-    elif user_choice.lower() == "scissors":
-        if computer_choice == 1:
-            print("Computer chose rock. You lose!")
-        elif computer_choice == 2:
-            print("Computer chose paper. You win!")
-        elif computer_choice == 3:
-            print("Computer chose scissors. It's a tie!")
+    if user_choice.isalpha():
+        #randomly select a number between 1 and 3 for the computer choice and determine game outcome
+        computer_choice = random.randint(1,3)
+        if user_choice.lower() == "rock":
+            if computer_choice == 1:
+                print("Computer chose rock. It's a tie!")
+            elif computer_choice == 2:
+                print("Computer chose paper. You lose!")
+            elif computer_choice == 3:
+                print("Computer chose scissors. You win!")
+        elif user_choice.lower() == "paper":
+            if computer_choice == 1:
+                print("Computer chose rock. You win!")
+            elif computer_choice == 2:
+                print("Computer chose paper. It's a tie!")
+            elif computer_choice == 3:
+                print("Computer chose scissors. You lose!")
+        elif user_choice.lower() == "scissors":
+            if computer_choice == 1:
+                print("Computer chose rock. You lose!")
+            elif computer_choice == 2:
+                print("Computer chose paper. You win!")
+            elif computer_choice == 3:
+                print("Computer chose scissors. It's a tie!")
+        else:
+            print("Invalid selection")
+        one_more_time()
     else:
-        print("Invalid selection")
-    one_more_time()
+        print("Invalid Input")
+        one_more_time()
 
 #start hangman
 def hangman():   
@@ -93,7 +97,7 @@ def hangman():
 
     #taking in user input and comparing to the selected word
     while True:
-        user_guess = input("\nWhat's your guess?: ").lower()
+        user_guess = input("\nWhat's your guess?: ").lower().strip()
         turns_remaining = turns_remaining - 1
         letter_found = False
         index = -1
@@ -129,31 +133,40 @@ def hangman():
 
 def want_to_play():
     #take in user input
-    print("\nHey friend, do you want to play a game? ")
-    play = input("Enter Yes or No ").lower()
-
-    #get user selection for the game
-    if play == "yes" or play == "y":
-        print("\nWhich one would you like to play?\n1) Rock Paper Scissors\n2) Hangman")
-        game_choice = input("\nEnter the number for the game you'd like to play: ")
-        game_selector(game_choice)
-    elif play == "no" or play == "n":
-        print("I'm sorry you don't want to play\nCome back soon!")
+    print("\nDo you want to play a game? ")
+    play = input("Enter Yes or No ").lower().strip()
+    if play.isalpha():
+        #get user selection for the game
+        if play == "yes" or play == "y":
+            print("\nWhich one would you like to play?\n1) Rock Paper Scissors\n2) Hangman")
+            game_choice = input("\nEnter the number for the game you'd like to play: ").strip()
+            if game_choice.isalnum():
+                game_selector(game_choice)
+            else:
+                print("Invalid Input")
+        elif play == "no" or play == "n":
+            print("I'm sorry you don't want to play\nCome back soon!")
+        else:
+            print("Sorry, I didn't catch that")
     else:
-        print("Sorry, I didn't catch that")
+        print("\nInvalid input")
+
     
 
 def one_more_time():
-    play_again = input("\nWould you like to play another game? ").lower()
-    if play_again == "yes" or play_again == "y":
-        print("\nLet's do it!")
-        print("\nWhich one would you like to play?\n1) Rock Paper Scissors\n2) Hangman")
-        game_choice = input("\nEnter the number for the game you'd like to play: ")
-        game_selector(game_choice)
-    elif play_again == "no" or play_again =="n":
-        print("\nI didn't want to play anyway. Bye!")
+    play_again = input("\nWould you like to play another game? ").lower().strip()
+    if play_again.isalpha():
+        if play_again == "yes" or play_again == "y":
+            print("\nLet's do it!")
+            print("\nWhich one would you like to play?\n1) Rock Paper Scissors\n2) Hangman")
+            game_choice = input("\nEnter the number for the game you'd like to play: ")
+            game_selector(game_choice)
+        elif play_again == "no" or play_again =="n":
+            print("\nI didn't want to play anyway. Bye!")
+        else:
+            print("Sorry, I didn't catch that")
     else:
-        print("Sorry, I didn't catch that")
+        print("Invlaid input")
 
 
 def banner():
